@@ -27,22 +27,22 @@ symfony console lexik:jwt:generate-keypair
 # 4. Create the database schema
 symfony console doctrine:schema:create
 
-# 5. Start the dev server
-symfony serve
+# 5. Start the dev server (no TLS — avoids CA install)
+symfony serve --no-tls
 ```
 
-API is available at `https://127.0.0.1:8000`.
+API is available at `http://127.0.0.1:8000`.
 
 ## Auth
 
 ```bash
 # Login
-curl -X POST https://127.0.0.1:8000/api/auth/login \
+curl -X POST http://127.0.0.1:8000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username": "admin", "password": "yourpassword"}'
 
 # Refresh
-curl -X POST https://127.0.0.1:8000/api/auth/refresh \
+curl -X POST http://127.0.0.1:8000/api/auth/refresh \
   -H "Content-Type: application/json" \
   -d '{"refresh_token": "<refresh_token>"}'
 ```
